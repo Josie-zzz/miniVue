@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <div>{{ input }}</div>
+      <div>v-model实现：</div>
+      <input type="text" v-model="input">
+    </div>
+    <div>
+      <div>{{ input2 }}</div>
+      <div>单向绑定加事件监听(简写)：</div>
+      <input type="text" :value="input2" @input="changeVal">
+    </div>
+    <div>
+      <div>{{ input2 }}</div>
+      <div>单向绑定加事件监听：</div>
+      <input type="text" v-bind:value="input2" v-on:input="changeVal">
+    </div>
+  </div>
+  <script src="./js/observer.js"></script>
+  <script src="./js/watcher.js"></script>
+  <script src="./js/compile.js"></script>
+  <script src="./js/miniVue.js"></script>
+  <script>
+    const minivue = new MiniVue({
+      el: '#app',
+      data: {
+        input: "input",
+        input2: 'input2',
+      },
+      methods: {
+        changeVal(e){
+          this.input2 = e.target.value
+        },
+      }
+    })
+  </script>
+</body>
+</html>
